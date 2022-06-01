@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+
+<div class="container mt-5 mb-3">
+            
+  <div class="row">
+  {% for post in posts %}
+  <div class="col-lg-4 my-4">
+    <div class="card shadow" style="width: 18rem;height:35rem;">
+      <img src="/media/{{post.image}}" class="card-img-top" alt="Cannot Display" style="height: 35%;" >
+      <div class="card-body">
+        <h5 class="card-title">{{post.title}} <br><small>by {{post.author}}</small></h5>
+        <p class="card-text" style="height:5rem">{{post.content| truncatechars:100}}</p>
+        <br/>
+        <a href="{% url 'readmore' post.id %}" class="btn btn-info">Read more</a>
+        <a href="{% url 'delete_view' post.id %}" class="btn btn-danger">Delete</a><br><br>
+        <a href="{% url 'comment' post.id %}" class="btn btn-primary">Comment</a>
+        <a href="{% url 'update' post.id %}" class="btn btn-success">Update</a>
+      </div>
+    </div>
+  </div>
+     {% endfor %}
+  </div>
+</div>
+{% endblock %}

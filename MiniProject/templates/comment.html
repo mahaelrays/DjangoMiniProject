@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<div class="container ">
+      <h2 class="blog-post-title">{{post.title}}</h2>
+      <br>
+      <div class="media">
+          
+            <div class="media-body">
+
+                  <h5 class="mt-0">{{post.author}}
+                             </h5>
+                  {{post.dateTime}}
+            </div>
+      </div>
+      <br>
+      <img src="/media/{{post.image}}" alt="" height="250px" width="500px">
+      <br>
+      <p>{{post.content}}.</p>
+      
+      <a href="{% url 'update' post.id %}" class="edit btn btn-warning">Edit/Update Blog Post</a></small> </a>
+      <hr>
+      
+      <div class="container">
+            <h2>Add Comments Here</h2>
+            <form action="{% url 'comment' post.id %}" method="POST" novalidate> 
+                  {% csrf_token %}
+                  
+                  <textarea class="form-control" placeholder="Leave a comment here" id="floatingText"
+                              style="height: 100px" id="content" name="content"></textarea>
+
+                        <label for="floatingText">Leave a comment here.</label>
+                        <br>
+
+                  <div class="form-floating">
+                        <button type="submit" class="btn btn-primary">Comment</button>
+                  </div>
+            </form>
+           
+                  <br>
+                  <h2>All Comments ({{comments.count}})</h2>
+                  <br>
+                  {% for comment in comments %}
+                  <div class="card">
+                        <div class="card-header">
+                              <span style="font-size: 22px;">{{comment.user}} </span>
+                              <span style="font-size: 12px;">{{comment.dateTime }}</span>
+                        </div>
+                        <div class="card-body">
+                              <h6 class="card-text">{{comment.content}}</h6>
+                        </div>
+                  </div>
+                  <br>
+                  {% endfor %}
+            </div>
+      </div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block body_block %}
+
+<div class="container">
+<div class="card" style="align-items: center;">
+
+
+
+<div class="card-body" style="width: 50%;">
+    <img src="/media/{{image}}" class="card-img-top" alt="..." height="250px">
+
+<h5 class="card-title">{{title}} <br><small>by {{author}}</small></h5>
+
+<p class="card-text">{{content| safe | linebreaksbr}}</p>
+
+
+</div>
+</div>
+</div>
+{% endblock %}

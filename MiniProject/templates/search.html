@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<h2>Searched For:{{searched}}</h2>
+<section class="dark">
+	<div class="container py-4">
+    {% for blog in blogs %}
+		<article class="postcard dark blue">
+			<a class="postcard__img_link" href="#">
+				<img class="postcard__img" src="/media/{{blog.image}}" alt="Image Title" />
+			</a>
+			<div class="postcard__text">
+				<h1 class="postcard__title blue"><a href="#">{{ blog.title }} </a></h1>
+				<div class="postcard__subtitle small">
+					
+				</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">{{ blog.content| truncatechars:210 }}</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item"><i class="fas fa-tag mr-2"></i>Author : {{ blog.author }}</li>
+					<li class="tag__item play blue">
+						<a href="{% url 'readmore' blog.id %}"><i class="fas fa-play mr-2"></i>Read More</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
